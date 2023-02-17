@@ -57,5 +57,8 @@
     "moduleNameMapper": {
       "^@/(.+)": "<rootDir>/src/$1"
     }
+  },
+  "dependencies": {
+    "nyair": "^0.0.0"
   }
 }
