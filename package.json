@@ -7,6 +7,9 @@
     "type": "git",
     "url": "hota1024/nyaco"
   },
+  "bin": {
+    "nyaco": "bin/nyaco.js"
+  },
   "type": "module",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -59,7 +62,7 @@
     }
   },
   "dependencies": {
-    "nyair": "^0.0.0",
+    "nyair": "^0.0.1",
     "rs-enums": "^0.0.0"
   }
 }
