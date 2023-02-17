@@ -78,6 +78,7 @@
     "nyair": "^0.0.1",
     "rs-enums": "^0.0.0",
     "vscode": "^1.1.37",
-    "vscode-languageclient": "^8.1.0"
+    "vscode-languageclient": "^8.1.0",
+    "vscode-languageserver": "^8.1.0"
   }
 }
