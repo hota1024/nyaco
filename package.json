@@ -17,6 +17,19 @@
   "files": [
     "dist/"
   ],
+  "engines": {
+    "vscode": "^1.22.0"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "nyaco",
+        "extensions": [
+          ".nya"
+        ]
+      }
+    ]
+  },
   "scripts": {
     "build": "rollup -c",
     "start": "ts-node -r tsconfig-paths/register src/index.ts",
@@ -64,6 +77,7 @@
   "dependencies": {
     "nyair": "^0.0.1",
     "rs-enums": "^0.0.0",
+    "vscode": "^1.1.37",
     "vscode-languageclient": "^8.1.0"
   }
 }
