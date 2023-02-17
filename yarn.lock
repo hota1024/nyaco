@@ -3626,6 +3626,11 @@ rollup@^2.37.1:
   optionalDependencies:
     fsevents "~2.3.2"
 
+rs-enums@^0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/rs-enums/-/rs-enums-0.0.0.tgz#ee0aedad09eb36da59d2452371c941ff224cccfb"
+  integrity sha512-9nKokZ9tYrdMQrtyCge7w9XRfTLwybeip5WDGWcpFpklBNW77f+J0huCu5zjg9WBvsEJbtE14X23hL5DsAiVJA==
+
 rsvp@^4.8.4:
   version "4.8.5"
   resolved "https://registry.yarnpkg.com/rsvp/-/rsvp-4.8.5.tgz#c8f155311d167f68f21e168df71ec5b083113734"

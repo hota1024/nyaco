@@ -59,6 +59,7 @@
     }
   },
   "dependencies": {
-    "nyair": "^0.0.0"
+    "nyair": "^0.0.0",
+    "rs-enums": "^0.0.0"
   }
 }
