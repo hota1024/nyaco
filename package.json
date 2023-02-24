@@ -80,12 +80,14 @@
     }
   },
   "dependencies": {
+    "chalk": "^5.2.0",
     "image-size": "^1.0.2",
-    "nyair": "^0.0.2",
+    "nyair": "^0.0.4",
     "rs-enums": "^0.0.0",
     "vscode": "^1.1.37",
     "vscode-languageclient": "^8.1.0",
     "vscode-languageserver": "^8.1.0",
-    "vscode-languageserver-textdocument": "^1.0.8"
+    "vscode-languageserver-textdocument": "^1.0.8",
+    "web-audio-api": "^0.2.2"
   }
 }
