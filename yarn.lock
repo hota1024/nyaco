@@ -3507,10 +3507,10 @@ nwsapi@^2.2.0:
   resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.2.2.tgz#e5418863e7905df67d51ec95938d67bf801f0bb0"
   integrity sha512-90yv+6538zuvUMnN+zCr8LuV6bPFdq50304114vJYJ8RDyK8D5O9Phpbd6SZWgI7PwzmmfN1upeOJlvybDSgCw==
 
-nyair@^0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/nyair/-/nyair-0.0.4.tgz#ceb92975d4ce2dad36d588583de560aa17d588ce"
-  integrity sha512-mwZPODNyAiWAF3z8Qa2CEMNrTGfieaXNNzXIPPlSbEuNQ3kDd3ArHGZYm4S5awppmxEd7udTsIjw9+FK1tVKoA==
+nyair@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/nyair/-/nyair-0.0.5.tgz#70cf11a36a5a1778c2abd01992a27d208ab248b6"
+  integrity sha512-ddY2QPl6ym7+VoVnYfmrQ5c9cvpzeTa/ZKob+/lF2+nS5jqiMV0eAFgctpTYJoWbTbAKe6e6+qVNS5c+FOjj7Q==
   dependencies:
     caniuse-lite "^1.0.30001451"
     ts-node "^10.9.1"

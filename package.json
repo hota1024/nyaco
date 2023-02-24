@@ -84,7 +84,7 @@
     "cac": "^6.7.14",
     "chalk": "^5.2.0",
     "image-size": "^1.0.2",
-    "nyair": "^0.0.4",
+    "nyair": "^0.0.5",
     "rs-enums": "^0.0.0",
     "vscode": "^1.1.37",
     "vscode-languageclient": "^8.1.0",
