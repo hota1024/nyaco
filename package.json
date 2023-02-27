@@ -10,8 +10,8 @@
   "bin": {
     "nyaco": "bin/nyaco.js"
   },
-  "type": "module",
-  "main": "dist/cjs/index.cjs",
+  "type": "commonjs",
+  "main": "dist/extension/extension.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
   "files": [
@@ -20,6 +20,8 @@
   "engines": {
     "vscode": "^1.22.0"
   },
+  "activationEvents": [],
+  "publisher": "hota1024",
   "contributes": {
     "languages": [
       {
@@ -58,6 +60,7 @@
     "rollup-plugin-ts": "^3.2.0",
     "ts-jest": "^26.4.4",
     "tsconfig-paths": "^3.10.1",
+    "vscode": "^1.1.37",
     "typescript": "^4.9.5"
   },
   "jest": {
@@ -86,7 +89,6 @@
     "image-size": "^1.0.2",
     "nyair": "^0.0.5",
     "rs-enums": "^0.0.0",
-    "vscode": "^1.1.37",
     "vscode-languageclient": "^8.1.0",
     "vscode-languageserver": "^8.1.0",
     "vscode-languageserver-textdocument": "^1.0.8",

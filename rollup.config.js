@@ -35,7 +35,7 @@ export default [
     output: [
       {
         file: 'dist/lsp/server.js',
-        format: 'esm',
+        format: 'cjs',
         sourcemap: true,
       },
     ],
