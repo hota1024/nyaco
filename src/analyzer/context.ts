@@ -13,7 +13,7 @@ export class AnalyzeContext {
   public readonly globalLists: List[] = []
   public readonly broadcasts: Set<string> = new Set()
 
-  private isCreatedStacks = false
+  public isCreatedStacks = false
   public readonly symbolStackAlloc = `🐾 | mem::stack::alloc ${createUID()}`
   public readonly symbolStackFree = `🐾 | mem::stack::free ${createUID()}`
   public readonly symbolStack0 = `🐾 | mem::stack ${createUID()}`

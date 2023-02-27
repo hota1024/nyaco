@@ -5,6 +5,10 @@ export const freeCurrentStack = (c: CompileContext) => {
   const len = c.currentScope.getCurrentStackSize()
   const nomList: NOM[] = []
 
+  if (!c.analyzeContext.isCreatedStacks) {
+    return nomList
+  }
+
   nomList.push(
     createNom('$proc_call', {
       name: c.analyzeContext.symbolStackFree,
