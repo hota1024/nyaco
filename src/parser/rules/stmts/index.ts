@@ -1,5 +1,6 @@
 import { createNode, Node, NodeKind } from '@/ast'
 import { ParserListRule, ParserRule } from '@/parser/ParserRule'
+import { expectLet } from '../common/let'
 import { parseExpr } from '../expr'
 import { expectStmtForever } from './StmtForever'
 import { expectStmtIf } from './StmtIf'
@@ -16,6 +17,9 @@ export const parseStmt: ParserRule = (c) => {
     KeywordIf: () => expectStmtIf(c),
     KeywordUntil: () => expectStmtUntil(c),
     KeywordWhile: () => expectStmtWhile(c),
+
+    KeywordLet: () => expectLet(c),
+
     _: () => {
       const expr = parseExpr(c)
       let span = expr.span

@@ -192,6 +192,12 @@ export type NodeKindVariants = {
     segments: Node[]
   }
   PathWild: null
+
+  Let: {
+    name: Node
+    ty: Ty
+    init: Node
+  }
 }
 
 export class NodeKind<
@@ -283,6 +289,8 @@ export class NodeKind<
     new NodeKind('Ident', value)
   static Path = (value: Node[]) => new NodeKind('Path', { segments: value })
   static PathWild = () => new NodeKind('PathWild', null)
+
+  static Let = (value: NodeKindVariants['Let']) => new NodeKind('Let', value)
 
   expect<K extends keyof NodeKindVariants>(kind: K): NodeKindVariants[K] {
     if (this.matches(kind)) {

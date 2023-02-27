@@ -10,6 +10,12 @@ export const expectTy = (c: ParserContext) => {
     TyBool() {
       return Ty.Bool()
     },
+    TyNum() {
+      return Ty.Num()
+    },
+    TyStr() {
+      return Ty.Str()
+    },
     _() {
       throw new ParseError(`expected type`, c.current().span)
     },
