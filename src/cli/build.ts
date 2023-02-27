@@ -195,9 +195,9 @@ export const build = async (filePath: string, destPath: string) => {
           analyzeContext.currentScope,
           analyzeContext
         )
-        const blocks = compile(compilerContext, sprite.items)
-          .unwrapOrThrow()
-          .toNodeArray()
+        const nomList = compile(compilerContext, sprite.items).unwrapOrThrow()
+        const blocks = nomList.toNodeArray()
+        analyzeContext.stackBlocks.forEach((b) => blocks.unshift(b.toNode()))
 
         for (const item of sprite.items) {
           item.kind.match({

@@ -10,7 +10,7 @@ export default [
     output: [
       {
         file: 'dist/cli/cli.js',
-        format: 'esm',
+        format: 'cjs',
         sourcemap: true,
       },
     ],

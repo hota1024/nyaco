@@ -10,6 +10,11 @@ export type TyVariants = {
   Never: null
   EntityVar: null
   EntityList: null
+  Address: null
+  Array: {
+    ty: Ty
+    size: number
+  }
 }
 
 export class Ty extends Enum<TyVariants> {
@@ -22,8 +27,10 @@ export class Ty extends Enum<TyVariants> {
   static Never = () => new Ty('Never', null)
   static EntityVar = () => new Ty('EntityVar', null)
   static EntityList = () => new Ty('EntityList', null)
+  static Address = () => new Ty('Address', null)
+  static Array = (data: TyVariants['Array']) => new Ty('Array', data)
 
-  isAssignableTo(other: Ty) {
+  isAssignableTo(other: Ty): boolean {
     return other.match({
       Any: () => {
         return (
@@ -33,7 +40,7 @@ export class Ty extends Enum<TyVariants> {
         )
       },
       Num: () => {
-        return this.matches('Num')
+        return this.matches('Num') || this.matches('Address')
       },
       Bool: () => {
         return this.matches('Bool')
@@ -53,9 +60,25 @@ export class Ty extends Enum<TyVariants> {
       EntityList: () => {
         return this.matches('EntityList')
       },
+      Address: () => {
+        return this.matches('Address') || this.matches('Num')
+      },
+      Array: ({ ty, size }) => {
+        return this.match({
+          Array: (data) => data.ty.isAssignableTo(ty) && data.size === size,
+          _: () => false,
+        })
+      },
       Never() {
         return false
       },
+    })
+  }
+
+  size(): number {
+    return this.match({
+      Array: ({ ty, size }) => ty.size() * size,
+      _: () => 1,
     })
   }
 
@@ -87,6 +110,12 @@ export class Ty extends Enum<TyVariants> {
       },
       EntityList() {
         return '&list'
+      },
+      Address() {
+        return 'address'
+      },
+      Array({ ty, size }) {
+        return `${ty}[${size}]`
       },
     })
   }

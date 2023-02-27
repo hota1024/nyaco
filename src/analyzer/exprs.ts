@@ -37,6 +37,10 @@ export const analyzeExpr = (c: AnalyzeContext, expr: Node): Ty => {
         return Ty.Bool()
       }
 
+      if (op.matches('Eq')) {
+        return Ty.Void()
+      }
+
       return Ty.Num()
     },
     ExprUni(value) {
@@ -214,6 +218,9 @@ export const analyzeExpr = (c: AnalyzeContext, expr: Node): Ty => {
             List() {
               return Ty.EntityList()
             },
+            Let() {
+              return Ty.Address()
+            },
             _() {
               return Ty.Never()
             },
@@ -224,6 +231,10 @@ export const analyzeExpr = (c: AnalyzeContext, expr: Node): Ty => {
           return Ty.Never()
         },
       })
+    },
+    Deref({ index }) {
+      analyzeExpr(c, index)
+      return Ty.Any()
     },
     _() {
       return Ty.Never()

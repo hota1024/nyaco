@@ -184,6 +184,9 @@ export type NodeKindVariants = {
   AndEntity: {
     entity: Node
   }
+  Deref: {
+    index: Node
+  }
   Ident: {
     ident: string
     token: Token
@@ -192,6 +195,12 @@ export type NodeKindVariants = {
     segments: Node[]
   }
   PathWild: null
+
+  Let: {
+    name: Node
+    ty: Ty
+    init?: Node
+  }
 }
 
 export class NodeKind<
@@ -279,10 +288,14 @@ export class NodeKind<
 
   static AndEntity = (value: NodeKindVariants['AndEntity']) =>
     new NodeKind('AndEntity', value)
+  static Deref = (value: NodeKindVariants['Deref']) =>
+    new NodeKind('Deref', value)
   static Ident = (value: NodeKindVariants['Ident']) =>
     new NodeKind('Ident', value)
   static Path = (value: Node[]) => new NodeKind('Path', { segments: value })
   static PathWild = () => new NodeKind('PathWild', null)
+
+  static Let = (value: NodeKindVariants['Let']) => new NodeKind('Let', value)
 
   expect<K extends keyof NodeKindVariants>(kind: K): NodeKindVariants[K] {
     if (this.matches(kind)) {

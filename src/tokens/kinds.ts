@@ -22,6 +22,7 @@ export type TokenKindVariants = {
   KeywordList: null // list
   KeywordUse: null // use
   KeywordUseCore: null // use_core
+  KeywordLet: null // let
 
   KeywordWhenFlagClicked: null // when_flag_clicked
   KeywordWhenKeyPressed: null // when_key_pressed
@@ -39,6 +40,8 @@ export type TokenKindVariants = {
   KeywordWhile: null // while
 
   TyAny: null // any
+  TyNum: null // num
+  TyStr: null // str
   TyBool: null // bool
 
   OpenParen: null // (
@@ -109,6 +112,7 @@ export class TokenKind<
   static KeywordList = makeFactory('KeywordList')
   static KeywordUse = makeFactory('KeywordUse')
   static KeywordUseCore = makeFactory('KeywordUseCore')
+  static KeywordLet = makeFactory('KeywordLet')
 
   static KeywordWhenFlagClicked = makeFactory('KeywordWhenFlagClicked')
   static KeywordWhenKeyPressed = makeFactory('KeywordWhenKeyPressed')
@@ -129,6 +133,8 @@ export class TokenKind<
 
   // types
   static TyAny = makeFactory('TyAny')
+  static TyNum = makeFactory('TyNum')
+  static TyStr = makeFactory('TyStr')
   static TyBool = makeFactory('TyBool')
 
   static OpenParen = makeFactory('OpenParen')

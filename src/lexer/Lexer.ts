@@ -47,13 +47,9 @@ export class Lexer {
     new RegExpRule(/(^when_receive)/, () => TokenKind.KeywordWhenReceive()),
 
     // types
-    new RegExpRule(/(^any)/, () => TokenKind.TyAny()),
-    new RegExpRule(/(^bool)/, () => TokenKind.TyBool()),
 
     new RegExpRule(/(^\/\/.*)/, () => TokenKind.InlineComment()),
 
-    new RegExpRule(/(^true)/, () => TokenKind.LitBool(true)),
-    new RegExpRule(/(^false)/, () => TokenKind.LitBool(false)),
     new RegExpRule(/(^#[0-9a-fA-F]{6})/, (matches) =>
       TokenKind.LitColor(matches[0])
     ),
@@ -142,6 +138,20 @@ export class Lexer {
         return TokenKind.KeywordUntil()
       } else if (ident === 'while') {
         return TokenKind.KeywordWhile()
+      } else if (ident === 'let') {
+        return TokenKind.KeywordLet()
+      } else if (ident === 'true') {
+        return TokenKind.LitBool(true)
+      } else if (ident === 'false') {
+        return TokenKind.LitBool(false)
+      } else if (ident === 'any') {
+        return TokenKind.TyAny()
+      } else if (ident === 'bool') {
+        return TokenKind.TyBool()
+      } else if (ident === 'num') {
+        return TokenKind.TyNum()
+      } else if (ident === 'str') {
+        return TokenKind.TyStr()
       }
 
       return TokenKind.Ident()
