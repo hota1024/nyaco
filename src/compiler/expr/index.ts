@@ -11,6 +11,35 @@ export const compileExpr = (c: CompileContext, node: Node): NOM => {
   return node.kind.match({
     ExprBin({ op, left, right }) {
       return op.match({
+        Eq: () => {
+          return left.kind.match({
+            Deref({ index }) {
+              return createNom('data_replaceitemoflist', {
+                list: c.analyzeContext.symbolStack0,
+                index: compileExpr(c, index),
+                item: compileExpr(c, right),
+              })
+            },
+            _() {
+              const entity = c.resolveScopeEntity(left)
+              return entity.kind.match({
+                Let(value) {
+                  return createNom('data_replaceitemoflist', {
+                    list: c.analyzeContext.symbolStack0,
+                    index: c.getUnitStackIndex(value.offset),
+                    item: compileExpr(c, right),
+                  })
+                },
+                _() {
+                  throw new CompileError(
+                    'left side must be variable',
+                    left.span
+                  )
+                },
+              })
+            },
+          })
+        },
         EqEq: () =>
           createNom('operator_equals', {
             operand1: compileExpr(c, left) as BooleanNOM,
@@ -140,6 +169,23 @@ export const compileExpr = (c: CompileContext, node: Node): NOM => {
       const entity = c.resolveScopeEntity(node)
 
       return compileEntity(c, node, entity)
+    },
+    AndEntity({ entity }) {
+      const instance = c.resolveScopeEntity(entity)
+      return instance.kind.match({
+        Let(value) {
+          return c.getUnitStackIndex(value.offset)
+        },
+        _() {
+          throw new CompileError(`cannot get reference`, node.span)
+        },
+      })
+    },
+    Deref({ index }) {
+      return createNom('data_itemoflist', {
+        list: c.analyzeContext.symbolStack0,
+        index: compileExpr(c, index),
+      })
     },
     _: () => {
       throw new CompileError(

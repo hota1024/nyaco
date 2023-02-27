@@ -46,6 +46,16 @@ export const compileEntity = (
     ProcParam(value) {
       return createNom('$proc_arg', { name: value.name }) as NOM
     },
+    Let(value) {
+      if (value.ty.matches('Array')) {
+        return c.getUnitStackIndex(value.offset)
+      }
+
+      return createNom('data_itemoflist', {
+        list: c.analyzeContext.symbolStack0,
+        index: c.getUnitStackIndex(value.offset),
+      })
+    },
     _() {
       throw new CompileError(
         `\`${entity.name}\` is not a variable or list or parameter`,

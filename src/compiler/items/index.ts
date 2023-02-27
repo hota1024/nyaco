@@ -4,6 +4,7 @@ import { Scope } from '@/scope'
 import { createEntity } from '@/scope/Entity'
 import { EntityKind } from '@/scope/EntityKind'
 import { createNom, createNomList, NOM } from 'nyair'
+import { freeCurrentStack } from '../common/freeCurrentStack'
 import { CompileContext } from '../context'
 import { CompileError } from '../error'
 import { compileExpr } from '../expr'
@@ -76,6 +77,9 @@ export const compileItem = (c: CompileContext, item: Node) => {
 
       c.currentScope = scope
       const body = compileStmtList(c, def.body)
+
+      freeCurrentStack(c).forEach((block) => body.push(block))
+
       c.currentScope = parent
 
       return createNom('$proc_def', {

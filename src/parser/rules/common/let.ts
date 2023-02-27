@@ -1,4 +1,4 @@
-import { createNode, NodeKind } from '@/ast'
+import { createNode, Node, NodeKind } from '@/ast'
 import { expectIdent } from '@/parser/ident'
 import { ParserRule } from '@/parser/ParserRule'
 import { expectTy } from '@/parser/ty/ty'
@@ -9,8 +9,14 @@ export const expectLet: ParserRule = (c) => {
   const name = expectIdent(c)
   c.expectNext('Colon')
   const ty = expectTy(c)
-  c.expectNext('Eq')
-  const init = parseExpr(c)
+  let init: Node | undefined
+
+  if (c.peek().kind.matches('Eq')) {
+    c.next()
+    init = parseExpr(c)
+  }
+
+  const semiToken = c.expectNext('Semi')
 
   return createNode(
     NodeKind.Let({
@@ -18,6 +24,6 @@ export const expectLet: ParserRule = (c) => {
       ty,
       init,
     }),
-    letToken.span.merged(init.span)
+    letToken.span.merged(semiToken.span)
   )
 }

@@ -3,6 +3,7 @@ import { Node } from '@/ast'
 import { AnalyzeContext } from './context'
 import { AnalyzeError } from './error'
 import { analyzeExpr } from './exprs'
+import { analyzeLet } from './let'
 
 export const analyzeStmt = (c: AnalyzeContext, stmt: Node) => {
   stmt.kind.match({
@@ -56,6 +57,9 @@ export const analyzeStmt = (c: AnalyzeContext, stmt: Node) => {
       }
 
       analyzeStmtList(c, value.body)
+    },
+    Let() {
+      analyzeLet(c, stmt)
     },
     _() {},
   })

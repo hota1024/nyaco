@@ -27,6 +27,9 @@ export const analyzeEntity = (
       }
       return value.ty
     },
+    Let(value) {
+      return value.ty
+    },
     _() {
       c.errors.push(
         new AnalyzeError(`${entity.name} is not a variable or list`, node.span)

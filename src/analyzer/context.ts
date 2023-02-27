@@ -2,7 +2,7 @@ import { Node } from '@/ast'
 import { ParserContext } from '@/parser/context'
 import { Scope } from '@/scope'
 import { Entity } from '@/scope/Entity'
-import { List, Variable } from 'nyair'
+import { createNom, createNomList, createUID, List, NOM, Variable } from 'nyair'
 import { Err, Ok, Result } from 'rs-enums'
 import { AnalyzeError } from './error'
 
@@ -13,11 +13,95 @@ export class AnalyzeContext {
   public readonly globalLists: List[] = []
   public readonly broadcasts: Set<string> = new Set()
 
+  private isCreatedStacks = false
+  public readonly symbolStackAlloc = `🐾 | mem::stack::alloc ${createUID()}`
+  public readonly symbolStackFree = `🐾 | mem::stack::free ${createUID()}`
+  public readonly symbolStack0 = `🐾 | mem::stack ${createUID()}`
+  public readonly stackBlocks: NOM[] = []
+
   constructor(
     public readonly rootScope: Scope,
     public readonly parserContext: ParserContext
   ) {
     this.currentScope = rootScope
+  }
+
+  createStacksIfNotExists() {
+    if (this.isCreatedStacks) return
+    this.isCreatedStacks = true
+
+    this.globalLists.push({
+      name: this.symbolStack0,
+      initialValue: [],
+    })
+
+    this.stackBlocks.push(
+      createNom('$proc_def', {
+        name: this.symbolStackAlloc,
+        schema: [
+          {
+            type: 'label',
+            text: this.symbolStackAlloc,
+          },
+          {
+            type: 'string_number',
+            name: 'size',
+          },
+          {
+            type: 'string_number',
+            name: 'init',
+          },
+        ],
+        warp: true,
+        body: createNomList([
+          createNom('control_repeat', {
+            times: createNom('$proc_arg', {
+              name: 'size',
+            }),
+            substack: createNomList([
+              createNom('data_addtolist', {
+                list: this.symbolStack0,
+                item: createNom('$proc_arg', {
+                  name: 'init',
+                }),
+              }),
+            ]),
+          }),
+        ]),
+      })
+    )
+
+    this.stackBlocks.push(
+      createNom('$proc_def', {
+        name: this.symbolStackFree,
+        schema: [
+          {
+            type: 'label',
+            text: this.symbolStackFree,
+          },
+          {
+            type: 'string_number',
+            name: 'size',
+          },
+        ],
+        warp: true,
+        body: createNomList([
+          createNom('control_repeat', {
+            times: createNom('$proc_arg', {
+              name: 'size',
+            }),
+            substack: createNomList([
+              createNom('data_deleteoflist', {
+                list: this.symbolStack0,
+                index: createNom('data_lengthoflist', {
+                  list: this.symbolStack0,
+                }),
+              }),
+            ]),
+          }),
+        ]),
+      })
+    )
   }
 
   resolveScopeEntity(node: Node): Result<Entity | Entity[], AnalyzeError> {

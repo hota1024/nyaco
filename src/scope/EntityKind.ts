@@ -43,6 +43,10 @@ export type EntityKindVariants = {
     name: string
     ty: Ty
   }
+  Let: {
+    ty: Ty
+    offset: number
+  }
 }
 
 export class EntityKind extends Enum<EntityKindVariants> {
@@ -61,4 +65,6 @@ export class EntityKind extends Enum<EntityKindVariants> {
     new EntityKind('Proc', data)
   static ProcParam = (data: EntityKindVariants['ProcParam']) =>
     new EntityKind('ProcParam', data)
+
+  static Let = (data: EntityKindVariants['Let']) => new EntityKind('Let', data)
 }

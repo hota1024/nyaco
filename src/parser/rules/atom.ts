@@ -99,6 +99,15 @@ export const parseAtom: ParserRule = (c) => {
         andToken.span.merged(entity.span)
       )
     },
+    Star() {
+      const starToken = c.next()
+      const index = parseAtom(c)
+
+      return createNode(
+        NodeKind.Deref({ index }),
+        starToken.span.merged(index.span)
+      )
+    },
     _: () => {
       const peek = c.peek()
       if (peek.kind.isKeyword()) {

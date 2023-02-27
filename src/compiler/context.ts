@@ -3,6 +3,7 @@ import { Node } from '@/ast'
 import { CompileError } from '@/compiler/error'
 import { Scope } from '@/scope'
 import { Entity } from '@/scope/Entity'
+import { createNom } from 'nyair'
 
 export class CompileContext {
   public currentScope: Scope
@@ -12,6 +13,17 @@ export class CompileContext {
     public analyzeContext: AnalyzeContext
   ) {
     this.currentScope = rootScope
+  }
+
+  getUnitStackIndex(offset: number) {
+    return createNom('operator_add', {
+      num1: createNom('data_lengthoflist', {
+        list: this.analyzeContext.symbolStack0,
+      }),
+      num2: createNom('$literal_number', {
+        value: -(this.currentScope.getCurrentStackSize() - offset) + 1,
+      }),
+    })
   }
 
   resolveScopeEntity(node: Node): Entity {

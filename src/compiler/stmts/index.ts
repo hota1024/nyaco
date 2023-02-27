@@ -1,5 +1,6 @@
 import { Node } from '@/ast'
 import { createNom, createNomList, InputNodeOf, NOM } from 'nyair'
+import { compileLet } from '../common/let'
 import { CompileContext } from '../context'
 import { CompileError } from '../error'
 import { compileExpr } from '../expr'
@@ -61,6 +62,9 @@ export const compileStmt = (c: CompileContext, node: Node) => {
     },
     StmtSemi(value) {
       return compileExpr(c, value.expr) as NOM
+    },
+    Let() {
+      return compileLet(c, node) as NOM
     },
     _: () => {
       throw new CompileError(

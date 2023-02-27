@@ -272,6 +272,9 @@ connection.onHover((params) => {
         ProcParam(value) {
           contents.push(`(procedure parameter) ${entity.name}: ${value.ty}`)
         },
+        Let(value) {
+          contents.push(`(let) ${entity.name}: ${value.ty}`)
+        },
         // eslint-disable-next-line @typescript-eslint/no-empty-function
         _() {},
       })

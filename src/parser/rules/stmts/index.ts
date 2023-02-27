@@ -26,7 +26,10 @@ export const parseStmt: ParserRule = (c) => {
 
       if (c.peek().kind.matches('Semi')) {
         span = c.expectNext('Semi').span
-      } else if (!expr.kind.matches('ExprCall')) {
+      } else if (
+        !expr.kind.matches('ExprCall') &&
+        !expr.kind.matches('ExprBin') // TODO: only assign expression
+      ) {
         span = c.expectNext('Semi').span
       }
 
