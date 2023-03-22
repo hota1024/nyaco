@@ -7,7 +7,6 @@ import {
   varShowEntity,
 } from '@/scope/core/varScope'
 import { Entity } from '@/scope/Entity'
-import { NOM } from 'nyair'
 import { createNom } from '@/nom/createNom'
 import { None, Opt, Some } from 'rs-enums'
 import { compileExpr } from '..'
