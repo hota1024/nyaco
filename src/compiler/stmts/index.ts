@@ -1,5 +1,6 @@
 import { Node } from '@/ast'
-import { createNom, createNomList, InputNodeOf, NOM } from 'nyair'
+import { createNomList, InputNodeOf, NOM } from 'nyair'
+import { createNom } from '@/nom/createNom'
 import { compileLet } from '../common/let'
 import { CompileContext } from '../context'
 import { CompileError } from '../error'

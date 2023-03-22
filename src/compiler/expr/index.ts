@@ -1,5 +1,6 @@
 import { Node } from '@/ast'
-import { createNom, InputNodeOf, NOM } from 'nyair'
+import { InputNodeOf, NOM } from 'nyair'
+import { createNom } from '@/nom/createNom'
 import { CompileContext } from '../context'
 import { CompileError } from '../error'
 import { compileCall } from './call'

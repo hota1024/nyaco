@@ -1,4 +1,5 @@
-import { createNom, createNomList, NOM } from 'nyair'
+import { createNomList, NOM } from 'nyair'
+import { createNom } from '@/nom/createNom'
 import { CompileContext } from '../context'
 
 export const freeCurrentStack = (c: CompileContext) => {

@@ -3,7 +3,7 @@ import { Node } from '@/ast'
 import { CompileError } from '@/compiler/error'
 import { Scope } from '@/scope'
 import { Entity } from '@/scope/Entity'
-import { createNom } from 'nyair'
+import { createNom } from '@/nom/createNom'
 
 export class CompileContext {
   public currentScope: Scope

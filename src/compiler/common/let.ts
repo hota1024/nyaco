@@ -1,7 +1,8 @@
 import { Node } from '@/ast'
 import { createEntity } from '@/scope/Entity'
 import { EntityKind } from '@/scope/EntityKind'
-import { createNom, createNomList, NOM } from 'nyair'
+import { createNomList, NOM } from 'nyair'
+import { createNom } from '@/nom/createNom'
 import { CompileContext } from '../context'
 import { compileExpr } from '../expr'
 

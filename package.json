@@ -57,6 +57,7 @@
     "jest": "^26.6.3",
     "prettier": "^2.8.4",
     "rollup": "^2.37.1",
+    "rollup-plugin-progress": "^1.1.2",
     "rollup-plugin-ts": "^3.2.0",
     "ts-jest": "^26.4.4",
     "tsconfig-paths": "^3.10.1",
