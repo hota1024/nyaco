@@ -17,7 +17,7 @@ export const tryVarCall = (
   c: CompileContext,
   fn: Entity,
   args: Node[]
-): Opt<NOM> => {
+): Opt<any> => {
   if (fn === varSetEntity) {
     return Some(
       createNom('data_setvariableto', {
@@ -58,6 +58,6 @@ export const tryVarCall = (
 // export const tryVarEntity = (
 //   c: CompileContext,
 //   entity: Entity
-// ): Opt<NOM> => {
+// ): Opt<any> => {
 //   return None()
 // }

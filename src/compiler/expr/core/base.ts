@@ -9,13 +9,13 @@ export const tryMotionCall = (
   c: CompileContext,
   fn: Entity,
   args: Node[]
-): Opt<NOM> => {
+): Opt<any> => {
   return None()
 }
 
 export const tryMotionEntity = (
   c: CompileContext,
   entity: Entity
-): Opt<NOM> => {
+): Opt<any> => {
   return None()
 }

@@ -24,7 +24,7 @@ export const tryListCall = (
   c: CompileContext,
   fn: Entity,
   args: Node[]
-): Opt<NOM> => {
+): Opt<any> => {
   if (fn === listPushEntity) {
     return Some(
       createNom('data_addtolist', {
@@ -137,6 +137,6 @@ export const tryListCall = (
 // export const tryListEntity = (
 //   c: CompileContext,
 //   entity: Entity
-// ): Opt<NOM> => {
+// ): Opt<any> => {
 //   return None()
 // }

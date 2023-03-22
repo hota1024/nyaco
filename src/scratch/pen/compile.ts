@@ -25,7 +25,7 @@ export const tryPenCall = (
   c: CompileContext,
   fn: Entity,
   args: Node[]
-): Opt<NOM> => {
+): Opt<any> => {
   if (fn === penClearEntity) {
     return Some(createNom('pen_clear', {}))
   }
@@ -146,6 +146,6 @@ export const tryPenCall = (
   return None()
 }
 
-// export const tryPenEntity = (c: CompileContext, entity: Entity): Opt<NOM> => {
+// export const tryPenEntity = (c: CompileContext, entity: Entity): Opt<any> => {
 //   return None()
 // }

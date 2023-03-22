@@ -36,7 +36,7 @@ export const trySensingCall = (
   c: CompileContext,
   fn: Entity,
   args: Node[]
-): Opt<NOM> => {
+): Opt<any> => {
   if (fn === sensingTouchingMouseEntity) {
     return Some(
       createNom('sensing_touchingobject', {
@@ -180,7 +180,7 @@ export const trySensingCall = (
 export const trySensingEntity = (
   c: CompileContext,
   entity: Entity
-): Opt<NOM> => {
+): Opt<any> => {
   if (entity === sensingAnswerEntity) {
     return Some(createNom('sensing_answer', {}))
   }

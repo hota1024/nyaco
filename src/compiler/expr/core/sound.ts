@@ -20,7 +20,7 @@ export const trySoundCall = (
   c: CompileContext,
   fn: Entity,
   args: Node[]
-): Opt<NOM> => {
+): Opt<any> => {
   if (fn === soundPlayUntilDoneEntity) {
     return Some(
       createNom('sound_playuntildone', {
@@ -86,7 +86,7 @@ export const trySoundCall = (
   return None()
 }
 
-export const trySoundEntity = (c: CompileContext, entity: Entity): Opt<NOM> => {
+export const trySoundEntity = (c: CompileContext, entity: Entity): Opt<any> => {
   if (entity === soundVolumeEntity) {
     return Some(createNom('sound_volume', {}))
   }

@@ -20,7 +20,7 @@ export const tryControlCall = (
   c: CompileContext,
   fn: Entity,
   args: Node[]
-): Opt<NOM> => {
+): Opt<any> => {
   if (fn === controlWaitEntity) {
     return Some(
       createNom('control_wait', {
@@ -81,6 +81,6 @@ export const tryControlCall = (
 // export const tryControlEntity = (
 //   c: CompileContext,
 //   entity: Entity
-// ): Opt<NOM> => {
+// ): Opt<any> => {
 //   return None()
 // }

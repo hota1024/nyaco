@@ -30,7 +30,7 @@ export const tryMotionCall = (
   c: CompileContext,
   fn: Entity,
   args: Node[]
-): Opt<NOM> => {
+): Opt<any> => {
   if (fn === motionMoveEntity) {
     return Some(
       createNom('motion_movesteps', {
@@ -158,7 +158,7 @@ export const tryMotionCall = (
 export const tryMotionEntity = (
   c: CompileContext,
   entity: Entity
-): Opt<NOM> => {
+): Opt<any> => {
   if (entity === motionXPositionEntity) {
     return Some(createNom('motion_xposition', {}))
   }

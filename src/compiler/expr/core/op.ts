@@ -31,7 +31,7 @@ export const tryOpCall = (
   c: CompileContext,
   fn: Entity,
   args: Node[]
-): Opt<NOM> => {
+): Opt<any> => {
   if (fn === opRandomEntity) {
     return Some(
       createNom('operator_random', {
@@ -213,6 +213,6 @@ export const tryOpCall = (
   return None()
 }
 
-// export const tryOpEntity = (c: CompileContext, entity: Entity): Opt<NOM> => {
+// export const tryOpEntity = (c: CompileContext, entity: Entity): Opt<any> => {
 //   return None()
 // }

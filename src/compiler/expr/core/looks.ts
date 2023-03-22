@@ -34,7 +34,7 @@ export const tryLooksCall = (
   c: CompileContext,
   fn: Entity,
   args: Node[]
-): Opt<NOM> => {
+): Opt<any> => {
   if (fn === looksSayForEntity) {
     return Some(
       createNom('looks_sayforsecs', {
@@ -199,7 +199,7 @@ export const tryLooksCall = (
   return None()
 }
 
-export const tryLooksEntity = (c: CompileContext, entity: Entity): Opt<NOM> => {
+export const tryLooksEntity = (c: CompileContext, entity: Entity): Opt<any> => {
   if (entity === looksSizeEntity) {
     return Some(createNom('looks_size', {}))
   }

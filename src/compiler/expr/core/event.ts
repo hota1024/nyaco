@@ -13,7 +13,7 @@ export const tryEventCall = (
   c: CompileContext,
   fn: Entity,
   args: Node[]
-): Opt<NOM> => {
+): Opt<any> => {
   if (fn === eventBroadcastEntity) {
     return args[0].kind.match({
       LitStr(value) {
@@ -49,6 +49,6 @@ export const tryEventCall = (
 // export const tryEventEntity = (
 //   c: CompileContext,
 //   entity: Entity
-// ): Opt<NOM> => {
+// ): Opt<any> => {
 //   return None()
 // }
