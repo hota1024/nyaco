@@ -26,7 +26,7 @@ import {
   looksThinkForEntity,
 } from '@/scope/core/looksScope'
 import { Entity } from '@/scope/Entity'
-import { createNom, NOM } from 'nyair'
+import { createNom } from '@/nom/createNom'
 import { None, Opt, Some } from 'rs-enums'
 import { compileExpr } from '..'
 

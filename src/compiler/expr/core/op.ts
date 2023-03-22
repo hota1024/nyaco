@@ -23,7 +23,7 @@ import {
   opTanEntity,
 } from '@/scope/core/op'
 import { Entity } from '@/scope/Entity'
-import { createNom, NOM } from 'nyair'
+import { createNom } from '@/nom/createNom'
 import { None, Opt, Some } from 'rs-enums'
 import { compileExpr } from '..'
 
